@@ -17,9 +17,9 @@ const calcAvg = (teamName, scores) => {
 // Check for a winner out of the two teams function
 const checkWinner = function (teamOne, teamTwo) {
 	let winner = "";
-	if (teamOne.avg_score / (teamTwo.avg_score * 2) >= 1) {
+	if (teamOne.avg_score >= (teamTwo.avg_score * 2)) {
 		winner = `${teamOne.team_name} win! (${teamOne.avg_score}, ${teamTwo.avg_score})`;
-	} else if (teamTwo.avg_score / (teamOne.avg_score * 2) >= 1) {
+	} else if (teamTwo.avg_score >= (teamOne.avg_score * 2)) {
 		winner = `${teamTwo.team_name} win! (${teamTwo.avg_score}, ${teamOne.avg_score})`;
 	} else {
 		winner = 'No winner';
