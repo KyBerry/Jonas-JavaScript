@@ -138,9 +138,61 @@ if (friends2.includes('Peter')) {
 
 
 
+// Learning About Objects
+// If we use an array we can only reference things by the order number
+const jonasArray = [
+	'Jonas',
+	'Schmedtmann',
+	2037 - 1991,
+	'teacher',
+	['Michael', 'Peter', 'Steven']
+];
+// Using objects allows us to add a name to an element | key: value pairs
+// Object literal syntax is using '{}' | order does not matter with objects
+// Use Array's for more ordered data | Use Object's for more unstructured data
+const jonas = {
+	firstName: 'Jonas',
+	lastName: 'Schmedtmann',
+	age: 2037 - 1991,
+	job: 'teacher',
+	friends: ['Michael', 'Peter', 'Steven'],
+};
+console.log(jonas);
+// Accessing properties inside an object
+console.log(jonas.lastName); // dot notation
+console.log(jonas['lastName']); // bracket notation
+// Object  | adding functions to objects
+const kyle = {
+	firstName: 'Kyle',
+	lastName: 'Berry',
+	birthYear: 1995,
+	job: 'Software Developer',
+	friends: ['Kody', 'Tyler', 'Victoria', 'Max', 'Justin', 'Ethan'],
+	hasDriversLicense: true,
 
+	// calcAge: function(birthYear) {
+	// 	return 2020 - birthYear;
+	// }
+	
+	// calcAge: function () {
+	// 	console.log(this);
+	// 	return 2020 - this.birthYear;
+	// }
 
+	calcAge: function () {
+		this.age = 2020 - this.birthYear; // creating a property when we run this method once
+		return this.age;
+	},
 
+	getSummary: function () {
+		return `${this.firstName} is a ${this.calcAge()} year old ${this.job}, and ${this.firstName} has ${this.hasDriversLicense ? 'a' : 'no'} drivers license.`;
+	}
+};
+// accessing our methods inside an object
+console.log(kyle.calcAge()); // We just use dot notation or bracket notation
+
+// getting the summary of our person object
+console.log(kyle.getSummary());
 
 
 
