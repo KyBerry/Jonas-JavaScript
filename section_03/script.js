@@ -196,6 +196,7 @@ const kyleArray = [
   ["Kody", "Tyler", "Justin"],
   true,
 ];
+
 const types = [];
 // Logging all elements in the above array
 for (let i = 0; i < kyleArray.length; i++) {

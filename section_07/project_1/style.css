@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Play', sans-serif;
+    background: #333;
+}
+
+.btn {
+    padding: 25px 50px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+    border-bottom: 5px solid #fff;
+}
+
+header h1 {
+    font-size: 100px;
+    color: #fff;
+}
+
+header button {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+header p.num-range {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 25px;
+    color: #fff;
+}
+
+header div.number {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: -75px;
+    width: 450px;
+    height: 150px;
+    background: #fff;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 75vh;
+}
+
+section.left,
+section.right {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-basis: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+section.left input {
+    width: 450px;
+    height: 150px;
+    background: transparent;
+    border: 3px solid #fff;
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 50px;
+    color: #fff;
+}
+
+section.left input::placeholder {
+    color: #fff;
+}
+
+
+section.right p {
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    margin: 15px 0px;
+}
