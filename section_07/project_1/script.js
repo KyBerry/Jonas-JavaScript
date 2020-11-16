@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
     // Selecting an element using javascript
@@ -24,15 +24,15 @@
 
 // list of dom selectors
 const selectors = {
-    msg: document.querySelector('.message'),
-    again: document.querySelector('.again'),
-    guess: document.querySelector('.guess'),
-    number: document.querySelector('.number'),
-    check: document.querySelector('.check'),
-    score: document.querySelector('.score'),
-    highScore: document.querySelector('.highscore'),
-    body: document.querySelector('body'),
-}
+  msg: document.querySelector(".message"),
+  again: document.querySelector(".again"),
+  guess: document.querySelector(".guess"),
+  number: document.querySelector(".number"),
+  check: document.querySelector(".check"),
+  score: document.querySelector(".score"),
+  highScore: document.querySelector(".highscore"),
+  body: document.querySelector("body"),
+};
 
 // generating random number 1 - 20
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
@@ -40,46 +40,42 @@ let score = 20;
 let highScore = 0;
 
 // display game message function
-const displayMessage = function(message) {
+const displayMessage = function (message) {
   selectors.msg.textContent = message;
 };
 
+selectors.check.addEventListener("click", function () {
+  // retrieving the guess from the user input
+  const guess = Number(selectors.guess.value);
 
-selectors.check.addEventListener('click', function() {
+  // validating there was a guess / input
+  if (!guess) {
+    displayMessage("🛑 Please Enter a number!");
 
-    // retrieving the guess from the user input
-    const guess = Number(selectors.guess.value);
+    // When player wins
+  } else if (guess === secretNumber) {
+    displayMessage("🥳 Correct Number!");
+    selectors.number.textContent = secretNumber;
+    selectors.body.style.backgroundColor = "#60b347";
 
-    // validating there was a guess / input
-    if (!guess) {
-        displayMessage("🛑 Please Enter a number!");
-
-      // When player wins
-    } else if (guess === secretNumber) {
-        displayMessage('🥳 Correct Number!');
-        selectors.number.textContent = secretNumber;
-        selectors.body.style.backgroundColor = '#60b347';
-
-        // Setting and comparing highscore
-        if (score > highScore) {
-            highScore = score;
-            selectors.highScore.textContent = highScore;
-        }
-
-      // When a player's guess is wrong
-    } else if (guess !== secretNumber) {
-        if (score > 1) {
-            displayMessage(guess > secretNumber ? '📈 Too high!' : '📉 Too low!');
-            score--;
-            selectors.score.textContent = score;
-        } else {
-            displayMessage('😞 You lost the game!');
-            selectors.score.textContent = 0;
-        }
+    // Setting and comparing highscore
+    if (score > highScore) {
+      highScore = score;
+      selectors.highScore.textContent = highScore;
     }
 
+    // When a player's guess is wrong
+  } else if (guess !== secretNumber) {
+    if (score > 1) {
+      displayMessage(guess > secretNumber ? "📈 Too high!" : "📉 Too low!");
+      score--;
+      selectors.score.textContent = score;
+    } else {
+      displayMessage("😞 You lost the game!");
+      selectors.score.textContent = 0;
+    }
+  }
 });
-
 
 /*
     Coding Challenge #1
@@ -89,13 +85,13 @@ selectors.check.addEventListener('click', function() {
  */
 
 // Click event for play again button
-selectors.again.addEventListener('click', function() {
-   score = 20;
-   secretNumber = Math.trunc(Math.random() * 20) + 1;
+selectors.again.addEventListener("click", function () {
+  score = 20;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
 
-   selectors.msg.textContent = 'Start guessing...';
-   selectors.body.style.backgroundColor = '#333';
-   selectors.score.textContent = 20;
-   selectors.guess.value = '';
-   selectors.number.textContent = '?';
+  selectors.msg.textContent = "Start guessing...";
+  selectors.body.style.backgroundColor = "#333";
+  selectors.score.textContent = 20;
+  selectors.guess.value = "";
+  selectors.number.textContent = "?";
 });
