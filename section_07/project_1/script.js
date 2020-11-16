@@ -30,12 +30,19 @@ const selectors = {
     number: document.querySelector('.number'),
     check: document.querySelector('.check'),
     score: document.querySelector('.score'),
+    highScore: document.querySelector('.highscore'),
     body: document.querySelector('body'),
 }
 
 // generating random number 1 - 20
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let highScore = 0;
+
+// display game message function
+const displayMessage = function(message) {
+  selectors.msg.textContent = message;
+};
 
 
 selectors.check.addEventListener('click', function() {
@@ -45,33 +52,28 @@ selectors.check.addEventListener('click', function() {
 
     // validating there was a guess / input
     if (!guess) {
-        selectors.msg.textContent = "🛑 Please Enter a number!";
+        displayMessage("🛑 Please Enter a number!");
 
       // When player wins
     } else if (guess === secretNumber) {
-        selectors.msg.textContent = '🥳 Correct Number!';
+        displayMessage('🥳 Correct Number!');
         selectors.number.textContent = secretNumber;
         selectors.body.style.backgroundColor = '#60b347';
 
-      // When a player's guess is too high
-    } else if (guess > secretNumber) {
-        if (score > 1) {
-            selectors.msg.textContent = '📈 Too high!';
-            score--;
-            selectors.score.textContent = score;
-        } else {
-            selectors.msg.textContent = '😞 You lost the game!';
-            selectors.score.textContent = 0;
+        // Setting and comparing highscore
+        if (score > highScore) {
+            highScore = score;
+            selectors.highScore.textContent = highScore;
         }
 
-      // when the guess is too low
-    } else if (guess < secretNumber) {
+      // When a player's guess is wrong
+    } else if (guess !== secretNumber) {
         if (score > 1) {
-            selectors.msg.textContent = '📉 Too low!';
+            displayMessage(guess > secretNumber ? '📈 Too high!' : '📉 Too low!');
             score--;
             selectors.score.textContent = score;
         } else {
-            selectors.msg.textContent = '😞 You lost the game!';
+            displayMessage('😞 You lost the game!');
             selectors.score.textContent = 0;
         }
     }
@@ -86,6 +88,7 @@ selectors.check.addEventListener('click', function() {
     can make a new guess! Here is how:
  */
 
+// Click event for play again button
 selectors.again.addEventListener('click', function() {
    score = 20;
    secretNumber = Math.trunc(Math.random() * 20) + 1;
