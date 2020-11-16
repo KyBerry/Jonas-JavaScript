@@ -22,31 +22,39 @@
     Second argument is <function that does some action> (the event handler)
 */
 
+// list of dom selectors
 const selectors = {
     msg: document.querySelector('.message'),
+    again: document.querySelector('.again'),
     guess: document.querySelector('.guess'),
     number: document.querySelector('.number'),
     check: document.querySelector('.check'),
     score: document.querySelector('.score'),
+    body: document.querySelector('body'),
 }
 
 // generating random number 1 - 20
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 
-selectors.number.textContent = secretNumber;
+
 selectors.check.addEventListener('click', function() {
 
     // retrieving the guess from the user input
     const guess = Number(selectors.guess.value);
 
-    // validating there was a guess
+    // validating there was a guess / input
     if (!guess) {
         selectors.msg.textContent = "🛑 Please Enter a number!";
+
+      // When player wins
     } else if (guess === secretNumber) {
         selectors.msg.textContent = '🥳 Correct Number!';
-    } else if (guess > secretNumber) {
+        selectors.number.textContent = secretNumber;
+        selectors.body.style.backgroundColor = '#60b347';
 
+      // When a player's guess is too high
+    } else if (guess > secretNumber) {
         if (score > 1) {
             selectors.msg.textContent = '📈 Too high!';
             score--;
@@ -56,8 +64,8 @@ selectors.check.addEventListener('click', function() {
             selectors.score.textContent = 0;
         }
 
+      // when the guess is too low
     } else if (guess < secretNumber) {
-
         if (score > 1) {
             selectors.msg.textContent = '📉 Too low!';
             score--;
@@ -68,4 +76,23 @@ selectors.check.addEventListener('click', function() {
         }
     }
 
+});
+
+
+/*
+    Coding Challenge #1
+
+    Implement a game rest functionality, so that the player
+    can make a new guess! Here is how:
+ */
+
+selectors.again.addEventListener('click', function() {
+   score = 20;
+   secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+   selectors.msg.textContent = 'Start guessing...';
+   selectors.body.style.backgroundColor = '#333';
+   selectors.score.textContent = 20;
+   selectors.guess.value = '';
+   selectors.number.textContent = '?';
 });
